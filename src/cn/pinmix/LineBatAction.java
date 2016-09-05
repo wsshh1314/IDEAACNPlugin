@@ -128,7 +128,7 @@ public class LineBatAction extends AnAction {
             return null;
         }
 
-        boolean isFirst = true;
+        boolean appendedFirst = false;
 
         for (int i = 0; i < vars.length; i++) {
 
@@ -136,22 +136,26 @@ public class LineBatAction extends AnAction {
             String _varName = vars[i].trim();
 
             if (_varName.length() > 0) {
-                if (isFirst == true) {
-                    isFirst = false;
-                }
+
                 if (_varName.endsWith(";")) {
 
-                    if (isFirst) {
-                        mBuilder.append(_varName.replaceFirst(";", className + ";"));
+                    if (appendedFirst) {
+                        mBuilder.append("," + _varName.replaceFirst(";", className + ";"));
+
 
                     } else {
-                        mBuilder.append("," + _varName.replaceFirst(";", className + ";"));
+                        appendedFirst = true;
+                        mBuilder.append(_varName.replaceFirst(";", className + ";"));
+
                     }
                 } else {
-                    if (isFirst) {
-                        mBuilder.append(_varName + className);
-                    } else {
+                    if (appendedFirst) {
                         mBuilder.append("," + _varName + className);
+
+                    } else {
+                        mBuilder.append(_varName + className);
+
+                        appendedFirst = true;
                     }
                 }
             }
