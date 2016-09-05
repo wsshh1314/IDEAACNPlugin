@@ -14,10 +14,6 @@ import com.intellij.psi.PsiFile;
  */
 public class ACNPAction extends AnAction {
 
-    /*
-     跳跃关键字
-     */
-    private static String[] keywords = {"final", "static", "const", "public", "protected", "private"};
 
     @Override
     public void actionPerformed(AnActionEvent event) {
@@ -57,7 +53,7 @@ public class ACNPAction extends AnAction {
 
         for (String str : split) {
 
-            if (str.length() > 0 && !isContaintKeyWorkds(str)) {
+            if (str.length() > 0 && !SimpleUtils.isContaintKeyWorkds(str)) {
                 first = str;
                 break;
             }
@@ -88,24 +84,8 @@ public class ACNPAction extends AnAction {
                 }, "ACNPAction", null);
             }
         });
-        //String txt = Messages.showInputDialog(project, "What is your name? pos:"+position.line + "ClassName is :"+first, "Input your name", Messages.getQuestionIcon());
 
-        //Messages.showMessageDialog(project, "Hello, " + project.getProjectFile().getName() + "!\n I am glad to see you.", "Information", Messages.getInformationIcon());
-    }
 
-    /**
-     * @param k
-     * @return
-     */
-    private boolean isContaintKeyWorkds(String k) {
-        boolean result = false;
-        for (String str : keywords) {
-            if (k.equalsIgnoreCase(str)) {
-                result = true;
-                break;
-            }
-        }
-        return result;
     }
 
 

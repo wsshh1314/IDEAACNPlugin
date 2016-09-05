@@ -13,7 +13,7 @@
       <code>
       private static JButton _test
       </code>,
-      then press shortcurt key (default is ALT + C) ,you will get<br>
+      then press shortcut key (default is ALT + C) ,you will get<br>
        <code>
       private static JButton _testJButton
       </code>
@@ -45,6 +45,10 @@
             description="append Class Name at the end of the declared var name">
       <add-to-group group-id="CodeCompletionGroup" anchor="first"/>
       <keyboard-shortcut keymap="$default" first-keystroke="alt C"/>
+    </action>
+    <action id="Shaohui.LineBatAction" class="cn.pinmix.LineBatAction" text="LineBat">
+      <add-to-group group-id="CodeCompletionGroup" anchor="first"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="alt B"/>
     </action>
   </actions>
 
