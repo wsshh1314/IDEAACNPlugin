@@ -1,38 +1,43 @@
 <idea-plugin version="2">
     <id>cn.pinmix.shaohui.ACNPlugin</id>
     <name>ACNPlugin</name>
-    <version>0.2</version>
-    <vendor email="wsshh1314@outlook.com" url="">Shaohui Wang</vendor>
+    <version>0.3</version>
+    <vendor email="wsshh1314@outlook.com" url="https://github.com/wsshh1314/IDEAACNPlugin">Shaohui Wang</vendor>
 
     <description><![CDATA[
       <ul>
       <li>Append Class Name at each end of the declared var name(s)</li>
-      <li>声明的变量名称后追加类型词尾</li>
+      <li>声明的变量名称后追加类型词尾，避免（尤其是Android开发中）声明的view变量名带大量类型简写的丑陋规则</li>
       </ul>
-      <em>eg1:</em>
-      <br>type code<br>
-      <code>
-      private static JButton _test
-      </code>,
-      then press shortcut key (default is ALT + C ) ,you will get<br>
-       <code>
-      private static JButton _testJButton
-      </code>
-       <p><br>
-       <em>eg2:(move caret to the current line)</em><br>
-      <code>
-      private Button aa,bb,cc,dd;
-      </code><br>
-      then press shortcut key(default is "ALT + B"),then you will get<br>
-      <code>
-       private Button aaButton,bbButton,ccButton,ddButton;
-      </code>
-      <p>
+    eg1:
+    <p>
+    <code>
+    private static ListView _test
+    </code><br>
+    then press shortcut key (default is "ALT+C"),you will get<br>
+    <code>
+    private static ListView _testListView
+    </code> </p><br>
+    eg2:(move the caret to current code line)
+    <p>
+    <code>
+    private  Map&lt;String,Object&gt; aa,bb,cc;
+    </code>
+    <br>
+    press shortcut key (default is "ALT+ B"),then you will get <br>
+    <code>
+    private  Map&lt;String,Object&gt; aaMap,bbMap,ccMap;
+    </code>
+    </p>
+
     ]]></description>
 
     <change-notes><![CDATA[
-      version 0.2 ,增加行内连续声明的变量批量追加<br>
-      version 0.1 ,only for java <br>
+        <ul>
+        <li> version 0.3 ,泛型类型的变量名称词尾追加错误修正</li>
+        <li> version 0.2 ,增加行内连续声明变量追加词尾</li>
+        <li> version 0.1 ,变量名追加类型词尾</li>
+        </ul>
       <em></em>
     ]]>
     </change-notes>

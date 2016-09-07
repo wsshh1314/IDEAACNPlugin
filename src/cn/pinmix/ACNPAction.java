@@ -20,7 +20,7 @@ public class ACNPAction extends AnAction {
 
         final  PsiFile psiFile = (PsiFile)event.getData(PlatformDataKeys.PSI_FILE);
 
-        //ver 0.1 only for java
+        //so far ,only for java
         if(!psiFile.getName().endsWith(".java")){
             return;
         }
@@ -46,19 +46,7 @@ public class ACNPAction extends AnAction {
             builder.append(text.charAt(i));
         }
         //get Class Name
-        //final static public private const
-        String[] split = builder.toString().split("\\s+");
-
-        String first = "";
-
-        for (String str : split) {
-
-            if (str.length() > 0 && !SimpleUtils.isContaintKeyWorkds(str)) {
-                first = str;
-                break;
-            }
-        }
-        final String resultString = first;
+        final String resultString = SimpleUtils.getClassName(builder.toString());
 
         final Runnable writeRunner = new Runnable() {
             @Override

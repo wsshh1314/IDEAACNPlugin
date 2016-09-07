@@ -41,20 +41,18 @@ public class LineBatAction extends AnAction {
         //get line text
         final int offset_start = document.getLineStartOffset(line);
         final int offset_end = document.getLineEndOffset(line);
+
         StringBuilder builder = new StringBuilder();
 
         for (int i = offset_start; i <= offset_end; i++) {
             builder.append(text.charAt(i));
         }
 
-        String statement = builder.toString();
+        final String resultString = SimpleUtils.replaceLine(builder.toString());
 
-        //too short line ，DONOT Process
-        if (statement.length() < 5) {
+        if(resultString.length() <5){
             return;
         }
-        final String resultString = processStatementString(builder.toString());
-
 
         final Runnable writeRunner = new Runnable() {
             @Override
@@ -80,92 +78,5 @@ public class LineBatAction extends AnAction {
         });
 
 
-    }
-
-    /**
-     * @param statement
-     * @return 新的替换语句
-     */
-    private String processStatementString(String statement) {
-        //get Class Name
-        //final static public private const
-
-        String[] splits = statement.split("\\s+");
-
-        String className = null;
-
-        int index = 0;
-
-        StringBuilder _afterBuiler = new StringBuilder();
-
-        boolean isFound = false;
-        for (int i = 0; i < splits.length; i++) {
-
-
-            String itemStr = splits[i];
-
-            if (isFound == false) {
-
-                if (itemStr.length() > 0 && !SimpleUtils.isContaintKeyWorkds(itemStr)) {
-                    className = itemStr;
-                    isFound = true;
-                }
-                // _beforeBuiler.append(splits[i]);
-            } else {
-                _afterBuiler.append(splits[i]);
-            }
-        }
-
-        //NOt FOUND
-        if (isFound == false) {
-            return null;
-        }
-        StringBuilder mBuilder = new StringBuilder();
-
-        String[] vars = _afterBuiler.toString().split(",");
-
-        if (vars.length == 0) {
-            return null;
-        }
-
-        boolean appendedFirst = false;
-
-        for (int i = 0; i < vars.length; i++) {
-
-            //trim var name
-            String _varName = vars[i].trim();
-
-            if (_varName.length() > 0) {
-
-                if (_varName.endsWith(";")) {
-
-                    if (appendedFirst) {
-                        mBuilder.append("," + _varName.replaceFirst(";", className + ";"));
-
-
-                    } else {
-                        appendedFirst = true;
-                        mBuilder.append(_varName.replaceFirst(";", className + ";"));
-
-                    }
-                } else {
-                    if (appendedFirst) {
-                        mBuilder.append("," + _varName + className);
-
-                    } else {
-                        mBuilder.append(_varName + className);
-
-                        appendedFirst = true;
-                    }
-                }
-            }
-
-
-        }
-        int classNameIndex = statement.indexOf(className);
-
-        String before = statement.substring(0, classNameIndex + className.length());
-
-        return before + " " + mBuilder.toString();
     }
 }
