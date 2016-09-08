@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>cn.pinmix.shaohui.ACNPlugin</id>
     <name>ACNPlugin</name>
-    <version>0.3</version>
+    <version>0.4</version>
     <vendor email="wsshh1314@outlook.com" url="https://github.com/wsshh1314/IDEAACNPlugin">Shaohui Wang</vendor>
 
     <description><![CDATA[
@@ -34,6 +34,7 @@
 
     <change-notes><![CDATA[
         <ul>
+        <li> version 0.4 ,空行操作异常错误修正</li>
         <li> version 0.3 ,泛型类型的变量名称词尾追加错误修正</li>
         <li> version 0.2 ,增加行内连续声明变量追加词尾</li>
         <li> version 0.1 ,变量名追加类型词尾</li>

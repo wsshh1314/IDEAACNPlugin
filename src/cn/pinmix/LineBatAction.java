@@ -50,7 +50,7 @@ public class LineBatAction extends AnAction {
 
         final String resultString = SimpleUtils.replaceLine(builder.toString());
 
-        if(resultString.length() <5){
+        if(resultString ==null || resultString.length() <5){
             return;
         }
 

@@ -18,10 +18,10 @@ public class ACNPAction extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent event) {
 
-        final  PsiFile psiFile = (PsiFile)event.getData(PlatformDataKeys.PSI_FILE);
+        final PsiFile psiFile = (PsiFile) event.getData(PlatformDataKeys.PSI_FILE);
 
         //so far ,only for java
-        if(!psiFile.getName().endsWith(".java")){
+        if (!psiFile.getName().endsWith(".java")) {
             return;
         }
 
@@ -45,8 +45,13 @@ public class ACNPAction extends AnAction {
         for (int i = offset_start; i <= offset_end; i++) {
             builder.append(text.charAt(i));
         }
+
         //get Class Name
         final String resultString = SimpleUtils.getClassName(builder.toString());
+
+        if (resultString == null) {
+            return;
+        }
 
         final Runnable writeRunner = new Runnable() {
             @Override
